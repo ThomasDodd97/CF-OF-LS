@@ -1,0 +1,25 @@
+{
+    "name": "CF-OF-LS",
+    "displayName": "CF-OF-LS",
+    "description": "CrunchFlow Out-File Language Support for VS-Code",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.67.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "out",
+            "aliases": ["CrunchFlow Out-File Programming Language", "out"],
+            "extensions": [".out"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "out",
+            "scopeName": "source.out",
+            "path": "./syntaxes/out.tmLanguage.json"
+        }]
+    }
+}
