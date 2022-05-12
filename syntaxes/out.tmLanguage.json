@@ -2,30 +2,203 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "CrunchFlow Out-File Programming Language",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
+		{"include": "#crunch_block"},
+		{"include": "#author_block"},
+		{"include": "#star_lines"},
+		{"include": "#disclaimer_line"},
+		{"include": "#description"},
+		{"include": "#disclaimer_description"},
+		{"include": "#components"},
+		{"include": "#database_used"},
+		{"include": "#secondary_species"},
+		{"include": "#kinetic_minerals"},
+		{"include": "#database_used_two_electric_boogaloo"},
+		{"include": "#list_one"},
+		{"include": "#homogeneous_reactions"},
+		{"include": "#reactions_headings"},
+		{"include": "#log_log_activity_problem"},
+		{"include": "#reaction_subheadings"},
+		{"include": "#reaction_tables"},
+		{"include": "#mineral_reactions"},
+		{"include": "#kinetic_inputs"},
+		{"include": "#geochemical_conditions_input"},
+		{"include": "#condition_label"},
+		{"include": "#condition_table_headings"},
+		{"include": "#condition_table"},
+		{"include": "#porosity_deduced"},
+		{"include": "#speciation_of_geochemical_conditions"},
+		{"include": "#star_divider"},
+		{"include": "#geochemical_cond"},
+		{"include": "#geochemical_conds"}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.out",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"crunch_block": {
+			"begin": "(\\ \\ \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\ \\S+\\ \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*)",
+			"end": "(\\ \\ \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\ \\S+\\ \\d+\\.{1}\\d+\\ \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*)",
+			"name": "keyword"
 		},
-		"strings": {
-			"name": "string.quoted.double.out",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.out",
-					"match": "\\\\."
-				}
-			]
+		"author_block": {
+			"begin": "(\\s+Author\\:\\ \\ C\\.I\\.\\ STEEFEL\\ )",
+			"end": "(\\s+All\\ Rights\\ Reserved\\ )",
+			"name": "keyword.other"
+		},
+		"star_lines": {
+			"match": "(\\ \\ \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*)",
+			"name": "keyword"
+		},
+		"disclaimer_line": {
+			"match": "(\\s+DISCLAIMER)",
+			"name": "keyword"
+		},
+		"description": {
+			"begin": "(\\ \\ This\\ work\\ was\\ produced\\ at\\ the\\ University\\ of\\ California)",
+			"end": "(\\ \\ allowed\\ under\\ DOE\\ Acquisition\\ Letter\\ 97-1\\.\\ )",
+			"name": "keyword.other"
+		},
+		"disclaimer_description": {
+			"begin": "(\\ \\ This\\ work\\ was\\ prepared\\ as\\ an\\ account\\ of\\ work\\ sponsored\\ by\\ an\\ agency\\ of\\ the)",
+			"end": "(\\ \\ purposes\\.\\ )",
+			"name": "keyword.other"
+		},
+		"components": {
+			"match": "(\\ Number\\ of\\ components\\ =)(\\s+\\d+)",
+			"captures": {
+				"1": {"name": "keyword"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"database_used": {
+			"match": "(\\ \\ \\ ---\\>\\ Using\\ database\\:)(\\s+\\S+\\.dbs)",
+			"captures": {
+				"1": {"name": "keyword.other"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"secondary_species": {
+			"match": "(\\ Number\\ of\\ secondary\\ species\\ in\\ input\\ file\\ =)(\\s+\\d+)",
+			"captures": {
+				"1": {"name": "keyword"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"kinetic_minerals": {
+			"match": "(\\ Number\\ of\\ kinetic\\ minerals\\ =)(\\s+\\d+)",
+			"captures": {
+				"1": {"name": "keyword"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"database_used_two_electric_boogaloo": {
+			"match": "(\\ \\ Using\\ database\\ file\\:)(\\s+\\S+\\.dbs)",
+			"captures": {
+				"1": {"name": "keyword.other"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"list_one": {
+			"match": "(\\s+\\d+)(\\ \\S+\\s+$)",
+			"captures": {
+				"1": {"name": "keyword.other"},
+				"2": {"name": "string"}
+			}
+		},
+		"homogeneous_reactions": {
+			"match": "(\\s+HOMOGENEOUS\\ REACTIONS)",
+			"name": "keyword"
+		},
+		"reactions_headings": {
+			"match": "(\\s+\\S+)(\\s+log\\ K)(\\s+Stoichiometric\\ Coefficients)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"}
+			}
+		},
+		"log_log_activity_problem": {
+			"match": "(\\s+Log)(\\s+Log)(\\s+Activity)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "string"}
+			}
+		},
+		"reaction_subheadings": {
+			"match": "(\\s{25,}.+?$)",
+			"name": "support.function"
+		},
+		"reaction_tables": {
+			"match": "(\\ \\S+)(\\s+\\S+\\.\\S+E\\S+)(\\s+-??\\S+\\.\\d{2})(\\s+-??\\S+\\.\\d{2})(.+?$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"},
+				"4": {"name": "support.function"},
+				"5": {"name": "support.function"}
+			}
+		},
+		"mineral_reactions": {
+			"match": "(\\s+MINERAL\\ REACTIONS)",
+			"name": "keyword"
+		},
+		"kinetic_inputs": {
+			"match": "(\\s+\\*\\*\\*KINETIC\\ INPUTS\\*\\*\\*)",
+			"name": "keyword"
+		},
+		"geochemical_conditions_input": {
+			"match": "(\\s+\\*\\*\\*\\*\\*\\*\\ \\ GEOCHEMICAL\\ CONDITIONS\\ INPUT\\ \\ \\*\\*\\*\\*\\*\\*)",
+			"name": "keyword"
+		},
+		"condition_label": {
+			"match": "(\\s+Condition\\ Label\\:)(.*?$)",
+			"captures": {
+				"1": {"name": "keyword.other"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"condition_table_headings": {
+			"match": "(\\s+Primary\\ species)(\\s+itype)(\\s+guess)(\\s+Total\\ conc\\.)(\\s+Constraint\\ phase)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"},
+				"4": {"name": "support.function"},
+				"5": {"name": "keyword.other"}
+			}
+		},
+		"condition_table": {
+			"match": "(\\s+\\S+)(\\s+\\d{0,2})(\\s+\\d{1,2}\\.\\d+E\\S+)(\\s+\\d{1,2}\\.\\d+E\\S+)(\\S+??\\s+??$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"},
+				"4": {"name": "support.function"},
+				"5": {"name": "keyword.other"}
+			}
+		},
+		"porosity_deduced": {
+			"match": "(\\s+Porosity\\ for\\ this\\ chemical\\ condition\\ =)(.*?$)",
+			"captures": {
+				"1": {"name": "keyword.other"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"speciation_of_geochemical_conditions": {
+			"match": "(\\s+\\*\\*\\*\\*\\*\\*\\*\\*\\ \\ SPECIATION\\ OF\\ GEOCHEMICAL\\ CONDITIONS\\ \\ \\*\\*\\*\\*\\*\\*\\*\\*)",
+			"name": "keyword"
+		},
+		"star_divider": {
+			"match": "(\\s+\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*)",
+			"name": "keyword"
+		},
+		"geochemical_cond": {
+			"match": "(\\s+---\\>\\ GEOCHEMICAL\\ CONDITION\\:)(.*?$)",
+			"captures": {
+				"1": {"name": "keyword.other"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"geochemical_conds": {
+			
 		}
 	},
 	"scopeName": "source.out"
