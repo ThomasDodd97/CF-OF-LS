@@ -16,7 +16,7 @@
 		{"include": "#list_one"},
 		{"include": "#homogeneous_reactions"},
 		{"include": "#reactions_headings"},
-		{"include": "#log_log_activity_problem"},
+		{"include": "#conc_o_i_s_ex_a_s_c_list_headers_one"},
 		{"include": "#reaction_subheadings"},
 		{"include": "#reaction_tables"},
 		{"include": "#mineral_reactions"},
@@ -29,7 +29,24 @@
 		{"include": "#speciation_of_geochemical_conditions"},
 		{"include": "#star_divider"},
 		{"include": "#geochemical_cond"},
-		{"include": "#geochemical_conds"}
+		{"include": "#geochemical_conds"},
+		{"include": "#gas_reactions"},
+		{"include": "#new_secondary_species_list_header"},
+		{"include": "#new_secondary_species_list"},
+		{"include": "#new_mineral_list_header"},
+		{"include": "#new_mineral_list"},
+		{"include": "#tot_aq"},
+		{"include": "#tot_aq_list"},
+		{"include": "#tot_aq_bar"},
+		{"include": "#conc_o_i_s_ex_a_s_c"},
+		{"include": "#conc_o_i_s_ex_a_s_c_header"},
+		{"include": "#tot_aq_list_headers"},
+		{"include": "#conc_o_i_s_ex_a_s_c_list_headers_two"},
+		{"include": "#conc_o_i_s_ex_a_s_c_list"},
+		{"include": "#pp_of_gases"},
+		{"include": "#pp_of_gases_list"},
+		{"include": "#sat_state_o_minerals"},
+		{"include": "#sat_state_o_minerals_list"}
 	],
 	"repository": {
 		"crunch_block": {
@@ -114,12 +131,12 @@
 				"3": {"name": "support.function"}
 			}
 		},
-		"log_log_activity_problem": {
+		"conc_o_i_s_ex_a_s_c_list_headers_one": {
 			"match": "(\\s+Log)(\\s+Log)(\\s+Activity)",
 			"captures": {
-				"1": {"name": "string"},
-				"2": {"name": "support.class"},
-				"3": {"name": "string"}
+				"1": {"name": "support.class"},
+				"2": {"name": "support.function"},
+				"3": {"name": "support.function"}
 			}
 		},
 		"reaction_subheadings": {
@@ -198,7 +215,111 @@
 			}
 		},
 		"geochemical_conds": {
-			
+			"match": "(\\s+Temperature\\ \\(C\\)\\s+=|\\s+Porosity\\s+=|\\s+Liquid\\ Saturation\\s+=|\\s+Liquid\\ Density\\ \\(kg/m\\^3\\)\\s+=|\\s+Solid\\ Density\\ \\(kg/m\\^3\\)\\s+=|\\s+Solid:Solution\\ Ratio\\s+=|\\s+Ionic\\ Strength\\s+=|\\s+Solution\\ pH\\s+=|\\s+Total\\ Charge\\s+=)(.*?$)",
+			"captures": {
+				"1": {"name": "keyword.other"},
+				"2": {"name": "support.function"}
+			}
+		},
+		"gas_reactions": {
+			"match": "(\\s+GAS\\ REACTIONS)",
+			"name": "keyword"
+		},
+		"new_secondary_species_list_header": {
+			"match": "(\\s+NEW\\ SECONDARY\\ SPECIES\\ LIST)",
+			"name": "keyword"
+		},
+		"new_secondary_species_list": {
+			"match": "(^\\S+\\s+??$)",
+			"name": "string"
+		},
+		"new_mineral_list_header": {
+			"match": "(\\s+NEW\\ MINERAL\\ LIST)",
+			"name": "keyword"
+		},
+		"new_mineral_list": {
+			"match": "(^\\ \\S+??$)",
+			"name": "string"
+		},
+		"tot_aq": {
+			"match": "(\\s+??Total\\ Aqueous\\ Concentrations\\ of\\ Primary\\ Species\\s+??$)",
+			"name": "keyword"
+		},
+		"tot_aq_bar": {
+			"match": "(\\s+---------------------------------------\\s+??$)",
+			"name": "keyword"
+		},
+		"tot_aq_list_headers": {
+			"match": "(^\\s+Species)(\\s+Molality)(\\s+Constraint)(\\s+Constraint\\ Phase\\s+??$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"},
+				"4": {"name": "comment"}
+			}
+		},
+		"tot_aq_list": {
+			"match": "(^\\s+\\S+)(\\s+-??\\d+\\.\\d+E\\S+)(\\s+\\S+)(\\s+\\S+??\\s+??$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"},
+				"4": {"name": "comment"}
+			}
+		},
+		"conc_o_i_s_ex_a_s_c_header": {
+			"match": "(\\s+Concentrations\\ of\\ Individual\\ Species,\\ Exchangers,\\ and\\ Surface\\ Complexes\\s+??$)",
+			"name": "keyword"
+		},
+		"conc_o_i_s_ex_a_s_c": {
+			"match": "(\\s+-----------------------------------------------------------------------\\s+??$)",
+			"name": "keyword"
+		},
+		"conc_o_i_s_ex_a_s_c_list_headers_two": {
+			"match": "(^\\s+Species)(\\s+Molality)(\\s+Activity)(\\s+Molality)(\\s+Activity)(\\s+Coefficient)(\\s+Type\\s+??$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"},
+				"4": {"name": "support.class"},
+				"5": {"name": "support.function"},
+				"6": {"name": "support.function"},
+				"7": {"name": "comment"}
+			}
+		},
+		"conc_o_i_s_ex_a_s_c_list": {
+			"match": "(^\\s+\\S+)(\\s+-??\\d+\\.\\d+)(\\s+-??\\d+\\.\\d+)(\\s+-??\\d+\\.\\d+E\\S+)(\\s+-??\\d+\\.\\d+E\\S+)(\\s+-??\\d+\\.\\d+E\\S+)(\\s+\\S+\\s+??$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.class"},
+				"3": {"name": "support.function"},
+				"4": {"name": "support.class"},
+				"5": {"name": "support.function"},
+				"6": {"name": "support.function"},
+				"7": {"name": "comment"}
+			}
+		},
+		"pp_of_gases": {
+			"match": "(^\\s+\\*\\*\\*\\*\\*\\*\\ Partial\\ pressure\\ of\\ gases\\ \\(bars\\)\\ \\*\\*\\*\\*\\*\\s+??$)",
+			"name": "keyword"
+		},
+		"pp_of_gases_list": {
+			"match": "(^\\s+\\S+)(\\s+\\d+\\.\\d+E-\\d+\\s+??$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "comment"}
+			}
+		},
+		"sat_state_o_minerals": {
+			"match": "(\\s+\\*\\*\\*\\*\\*\\*\\ Saturation\\ state\\ of\\ minerals\\ \\(log\\[Q/K\\]\\ \\*\\*\\*\\*\\*\\s+??$)",
+			"name": "keyword"
+		},
+		"sat_state_o_minerals_list": {
+			"match": "(^\\s+\\S+)(\\s+-??\\d+\\.\\d+\\s+??$)",
+			"captures": {
+				"1": {"name": "string"},
+				"2": {"name": "support.function"}
+			}
 		}
 	},
 	"scopeName": "source.out"
